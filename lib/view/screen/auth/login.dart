@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables
 
 import 'package:eshop/controller/auth/login_controller.dart';
+import 'package:eshop/core/class/statusrequest.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
 import 'package:eshop/core/functions/validinput.dart';
@@ -22,8 +23,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   @override
-  Widget build(BuildContext context) {
-    LoginControllerImp controller = Get.put(LoginControllerImp());
+  Widget build(BuildContext context) { Get.put(LoginControllerImp());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgroundColor,
@@ -33,7 +33,9 @@ class _LoginState extends State<Login> {
       ),
       body: WillPopScope(
         onWillPop: alertExitApp,
-        child: Container(
+        child: GetBuilder <LoginControllerImp>(builder: (controller) =>
+        controller.statusRequest == StatusRequest.loading ? Center( child: Text('Loading...'),):
+        Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           child: Form(
             key: controller.formstate,
@@ -50,7 +52,7 @@ class _LoginState extends State<Login> {
                   hintText: "Enter Your Email", 
                  iconData: Icons.mail_outline, 
                  labeltext: "Email", 
-                 mycontroller: controller.email, isNumber: false, 
+                 mycontroller: controller.email, isNumber: true, 
                 //  mycontroller: null,
                  ),
                  GetBuilder<LoginControllerImp>(builder: (controller)=> CustomTextFormAuth(
@@ -86,7 +88,7 @@ class _LoginState extends State<Login> {
                 ),
             ],),
           ),
-        ),
+        ),)
       )
       
     );

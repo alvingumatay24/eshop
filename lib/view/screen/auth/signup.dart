@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
 
 import 'package:eshop/controller/auth/signup_controller.dart';
+import 'package:eshop/core/class/statusrequest.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
 import 'package:eshop/core/functions/validinput.dart';
@@ -28,6 +29,8 @@ class SignUp extends StatelessWidget {
       body: WillPopScope(
         onWillPop: alertExitApp,
         child: GetBuilder<SignUpControllerImp>(builder: (controller)=>
+        controller.statusRequest == StatusRequest.loading ? Center(child: Text('Loading...'),)
+        :
         Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           child: Form(

@@ -2,20 +2,24 @@
 
 
 import 'package:eshop/core/constant/routes.dart';
+// import 'package:eshop/test.dart';
+// import 'package:eshop/test_view.dart';
 import 'package:eshop/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:eshop/view/screen/auth/login.dart';
 import 'package:eshop/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:eshop/view/screen/auth/signup.dart';
-import 'package:eshop/view/screen/auth/success.dart';
+import 'package:eshop/view/screen/auth/successresetpassword.dart';
 import 'package:eshop/view/screen/auth/success_signup.dart';
 import 'package:eshop/view/screen/auth/forgetpassword/verifycode.dart';
 import 'package:eshop/view/screen/auth/verfycodesignup.dart';
+import 'package:eshop/view/screen/home.dart';
 import 'package:eshop/view/screen/onboarding.dart';
 // import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
 List<GetPage<dynamic>>? routes = [
+    // GetPage(name: "/", page: ()=> TestView()),
    GetPage(name: AppRoute.login, page: ()=> Login()),
    GetPage(name: AppRoute.signUp, page: ()=> SignUp()),
    GetPage(name: AppRoute.forgetPassword, page: ()=> ForgetPassword()), 
@@ -25,6 +29,8 @@ List<GetPage<dynamic>>? routes = [
    GetPage(name: AppRoute.successResetPassword, page: ()=> SuccessResetPassword()),
    GetPage(name: AppRoute.successSignUp, page: ()=> SuccessSignUp()),
    GetPage(name: AppRoute.verifyCodeSignUp, page: ()=> VerifyCodeSignUp()),
+   GetPage(name: AppRoute.homepage, page: ()=> HomePage()),
+   
 ];
 
 // Map<String, Widget Function(BuildContext)> routess = {

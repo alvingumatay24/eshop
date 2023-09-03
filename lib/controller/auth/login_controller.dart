@@ -1,7 +1,10 @@
 
 // ignore_for_file: avoid_print
 
+import 'package:eshop/core/class/statusrequest.dart';
 import 'package:eshop/core/constant/routes.dart';
+import 'package:eshop/core/functions/handlingdatacontroller.dart';
+import 'package:eshop/data/datasource/remote/auth/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -13,24 +16,42 @@ import 'package:get/get.dart';
     }
    class  LoginControllerImp extends LoginController{
 
+    LoginData loginData = LoginData(Get.find());
+
    GlobalKey<FormState> formstate = GlobalKey<FormState>();
   
     TextEditingController?  email;
     TextEditingController?  password;
     
     bool isshowpassword = true;
+
+    StatusRequest? statusRequest;
+    
     showPassword(){
       isshowpassword = isshowpassword == true ? false : true;
       update();
     }
         @override
-        login() {
-          var formdata = formstate.currentState;
-           if(formdata!.validate()){
-             print("Valid");
+        login() async {
+          if (formstate.currentState!.validate()) {
+               statusRequest = StatusRequest.loading;
+            update();
+             var response = await loginData.postdata(email!.text, password!.text );
+
+           print("========================================== Controller $response");
+          statusRequest = handlingData(response);
+          if (StatusRequest.success == statusRequest){
+            if(response['status']== "success"){
+              // data?.addAll(response['data']);
+               Get.offNamed(AppRoute.homepage);
            }else{
-              print("NotValid");
+            Get.defaultDialog(title: "Warning", middleText: "Email or Password not Correct.");
+            statusRequest = StatusRequest.failure;
            }
+           }
+           update();
+              //  Get.offNamed(AppRoute.verifyCodeSignUp);
+            }else{}
         
         }
         

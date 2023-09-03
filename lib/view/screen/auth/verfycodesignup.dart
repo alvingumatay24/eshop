@@ -4,9 +4,10 @@
 // import 'package:eshop/controller/auth/forgetpassword_controller.dart';
 // import 'package:eshop/controller/auth/verifycode_controller.dart';
 import 'package:eshop/controller/auth/verycodesignup_controller.dart';
+import 'package:eshop/core/class/statusrequest.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
-import 'package:eshop/view/widget/auth/custombottomauth.dart';
+// import 'package:eshop/view/widget/auth/custombottomauth.dart';
 import 'package:eshop/view/widget/auth/customtextbodyaut.dart';
 import 'package:eshop/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,21 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
 
-class VerifyCodeSignUp extends StatelessWidget {
-  
+class VerifyCodeSignUp extends StatefulWidget {
+
   const VerifyCodeSignUp({super.key});
 
   @override
+  State<VerifyCodeSignUp> createState() => _VerifyCodeSignUpState();
+}
+
+class _VerifyCodeSignUpState extends State<VerifyCodeSignUp> {
+  // ignore: prefer_typing_uninitialized_variables
+
+
+  @override
   Widget build(BuildContext context) {
-  
-    VerifyCodeSignUpControllerImp controller = Get.put(VerifyCodeSignUpControllerImp());
+   Get.put(VerifyCodeSignUpControllerImp());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgroundColor,
@@ -29,9 +37,11 @@ class VerifyCodeSignUp extends StatelessWidget {
         title:  Text('Verification Code ', style:  Theme.of(context).textTheme.headline1!.copyWith(color: AppColor.grey)),
         centerTitle: true,
       ),
-      body: WillPopScope(
+      body:   WillPopScope(
         onWillPop: alertExitApp,
-        child: Container(
+        child:GetBuilder<VerifyCodeSignUpControllerImp>(builder: (controller)=> 
+      controller.statusRequest == StatusRequest.loading ? Center( child: Text('Loading...'),):
+        Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           child: ListView(children: [     
             CustomTextTitleAuth(text: 'Check Code',),
@@ -49,17 +59,13 @@ class VerifyCodeSignUp extends StatelessWidget {
               },
               //runs when every textfield is filled 
               onSubmit: (String verificationCode) {
+                controller.goToSuccessSignUp(verificationCode);
                }, 
                ),
               const SizedBox(height: 18),
-              CustomButtomAuth(text: 'CHECK', onPressed: (){
-                controller.goToSuccessSignUp();
-              },),
-                SizedBox(height: 15),  
           ],),
-        ),
-      )
-      
+        )),
+      ) 
     );
   }
 }

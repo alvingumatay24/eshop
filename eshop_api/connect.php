@@ -1,8 +1,8 @@
 <?php
 
-$dsn = "mysql:host=localhost;dbname=ecommerce";
-$user = "root";
-$pass = "";
+$dsn = "mysql:host=localhost;dbname=id21156838_eshop";
+$user = "id21156838_eshop_api";
+$pass = "Iox#102543";
 $option = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8");
 $countrowinpage =  9;
 try {
@@ -11,7 +11,7 @@ try {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Access-Control-Allow-Origin");
     header("Access-Control-Allow-Methods: POST, OPTIONS , GET");
-    include "./functions.php";
+    include "functions.php";
     if(!isset($notAuth)){
        //checkAuthenticate();
     }

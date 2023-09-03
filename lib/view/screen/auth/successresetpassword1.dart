@@ -9,8 +9,8 @@ import 'package:eshop/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SuccessResetPassword extends StatelessWidget {
-  const SuccessResetPassword({super.key});
+class SuccessSignUp extends StatelessWidget {
+  const SuccessSignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class SuccessResetPassword extends StatelessWidget {
                 Center(child: Icon(Icons.check_circle_outline, size: 200, color: AppColor.primaryColor)),
                  CustomTextTitleAuth(text: 'Congratulations',),
                 const SizedBox(height: 18),
-                CustomBodyTextAuth(text: 'successfully reset the password...', ),
+                CustomBodyTextAuth(text: 'successfully registered...', ),
                  const SizedBox(height: 18),
                 Spacer(),
                  Container(

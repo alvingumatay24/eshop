@@ -5,7 +5,6 @@
 // ==========================================================
 
 define("MB", 1048576);
-
 function filterRequest($requestname)
 {
   return  htmlspecialchars(strip_tags($_POST[$requestname]));
@@ -35,7 +34,6 @@ function insertData($table, $data, $json = true)
     $ins = implode(',', $ins);
     $fields = implode(',', array_keys($data));
     $sql = "INSERT INTO $table ($fields) VALUES ($ins)";
-
     $stmt = $con->prepare($sql);
     foreach ($data as $f => $v) {
         $stmt->bindValue(':' . $f, $v);
@@ -144,6 +142,21 @@ function checkAuthenticate()
     // End 
 }
 
-  function printFailure($message = "none"){
+  function printFailure($message = "none")
+  {
     echo  json_encode(array("status" => "failure", "message" => $message));
+  }
+
+   function printSuccess($message = "none")
+  {
+    echo  json_encode(array("status" => "success", "message" => $message));
+  }
+
+   function result($count)
+  {
+     if($count > 0){
+        printSuccess();
+     }else{
+        printFailure();
+     }
   }

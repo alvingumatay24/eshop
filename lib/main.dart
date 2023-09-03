@@ -1,12 +1,15 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 // import 'package:eshop/data/datasource/static/static.dart';
-import 'package:eshop/binding.dart';
+// import 'package:eshop/binding.dart';
+import 'package:eshop/bindings/initialbindings.dart';
 import 'package:eshop/core/services/services.dart';
 import 'package:eshop/routes.dart';
+import 'package:eshop/view/screen/auth/login.dart';
+// import 'package:eshop/test.dart';
 // import 'package:eshop/routes.dart';
 // import 'package:eshop/test.dart';
-import 'package:eshop/view/screen/onboarding.dart';
+// import 'package:eshop/view/screen/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,9 +37,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
      
-      home: Onboarding(),
-      // home:Test(),
-      initialBinding: MyBinding(),
+      // home: Onboarding(),
+      
+      home:Login(),
+      initialBinding: initialBindings(),
       // routes: routes,
       //ignore: prefer_const_literals_to_create_immutables
       getPages: routes,
