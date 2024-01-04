@@ -2,10 +2,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
 
 // import 'package:eshop/controller/auth/forgetpassword_controller.dart';
-import 'package:eshop/controller/auth/verifycode_controller.dart';
+import 'package:eshop/controller/forgetpassword/verifycode_controller.dart';
+import 'package:eshop/core/class/handlingdataview.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
-import 'package:eshop/view/widget/auth/custombottomauth.dart';
+// import 'package:eshop/view/widget/auth/custombottomauth.dart';
 import 'package:eshop/view/widget/auth/customtextbodyaut.dart';
 import 'package:eshop/view/widget/auth/customtexttitleauth.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class VerifyCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   
-    VerifyCodeControllerImp controller = Get.put(VerifyCodeControllerImp());
+   Get.put(VerifyCodeControllerImp());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgroundColor,
@@ -30,7 +31,8 @@ class VerifyCode extends StatelessWidget {
       ),
       body: WillPopScope(
         onWillPop: alertExitApp,
-        child: Container(
+        child:    GetBuilder<VerifyCodeControllerImp>(builder: (controller)=> HandlingDataRequest (statusRequest: controller.statusRequest, 
+        widget: Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           child: ListView(children: [     
             CustomTextTitleAuth(text: 'Check Code',),
@@ -48,16 +50,13 @@ class VerifyCode extends StatelessWidget {
               },
               //runs when every textfield is filled 
               onSubmit: (String verificationCode) {
+                controller.goToResetPassword(verificationCode);
                }, 
                ),
               const SizedBox(height: 18),
-              CustomButtomAuth(text: 'CHECK', onPressed: (){
-                controller.goToResetPassword();
-              },),
-                SizedBox(height: 15),  
           ],),
         ),
-      )
+      )))
       
     );
   }

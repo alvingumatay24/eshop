@@ -1,13 +1,14 @@
 // import 'package:eshop/core/class/statusrequest.dart';
 // import 'package:eshop/core/functions/handlingdatacontroller.dart';
+// import 'package:eshop/data/datasource/remote/test_data.dart';
 // // import 'package:eshop/data/datasource/remote/test_data.dart';
 // import 'package:get/get.dart';
 
 // class TestController extends GetxController {
-  //  TestData testData = TestData(Get.find());
+//    TestData testData = TestData(Get.find());
 
 
-  //  List data = [];
+//    List data = [];
 
 //     StatusRequest? statusRequest;
    

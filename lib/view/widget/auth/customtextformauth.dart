@@ -17,7 +17,7 @@ class CustomTextFormAuth extends StatelessWidget {
   required this.hintText, 
   required this.labeltext, 
    required this.mycontroller, 
-  required this.iconData, required this.valid, required this.isNumber, this.obscureText, this.onTapIcon, }) 
+  required this.iconData, required this.valid, this.obscureText, this.onTapIcon, required this.isNumber, }) 
   : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class CustomTextFormAuth extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       child: TextFormField(
-        keyboardType: isNumber ? TextInputType.numberWithOptions(decimal: true): TextInputType.text,
+        keyboardType: isNumber? TextInputType.numberWithOptions(decimal: true): TextInputType.text,
         validator: valid,
         controller: mycontroller,
         obscureText: obscureText == null || obscureText == false ? false : true, 

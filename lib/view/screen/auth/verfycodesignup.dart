@@ -4,7 +4,8 @@
 // import 'package:eshop/controller/auth/forgetpassword_controller.dart';
 // import 'package:eshop/controller/auth/verifycode_controller.dart';
 import 'package:eshop/controller/auth/verycodesignup_controller.dart';
-import 'package:eshop/core/class/statusrequest.dart';
+import 'package:eshop/core/class/handlingdataview.dart';
+// import 'package:eshop/core/class/statusrequest.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
 // import 'package:eshop/view/widget/auth/custombottomauth.dart';
@@ -40,7 +41,8 @@ class _VerifyCodeSignUpState extends State<VerifyCodeSignUp> {
       body:   WillPopScope(
         onWillPop: alertExitApp,
         child:GetBuilder<VerifyCodeSignUpControllerImp>(builder: (controller)=> 
-      controller.statusRequest == StatusRequest.loading ? Center( child: Text('Loading...'),):
+      HandlingDataRequest (statusRequest: controller.statusRequest, 
+        widget:
         Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           child: ListView(children: [     
@@ -65,7 +67,7 @@ class _VerifyCodeSignUpState extends State<VerifyCodeSignUp> {
               const SizedBox(height: 18),
           ],),
         )),
-      ) 
+      )) 
     );
   }
 }

@@ -10,7 +10,7 @@
   result($count);
 
   if($count > 0){
-  	$data = array("users_verifycode" => $verifycode);
-  	updateData("users", $data, "users_email= '$email'", false);
-  	mail($email, "Verify Code Exresscommerce", "Verify Code".$verifycode."");
+    $data = array("users_verifycode" => $verifycode);
+    updateData("users", $data, "users_email = '$email'", false);
+    mail($email, "Verify Code Exresscommerce", "Verify Code".$verifycode."");
   }

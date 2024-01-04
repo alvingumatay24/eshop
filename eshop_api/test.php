@@ -8,8 +8,8 @@
 // "users_phone" => "32145",
 // "users_verifycode" => "324343",
 // );
-// $count = insertData($table, $data);
 
+// $count = insertData($table, $data);
 
 include "connect.php";
 

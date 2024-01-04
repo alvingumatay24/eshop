@@ -1,73 +1,102 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
-import 'package:eshop/core/constant/color.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eshop/controller/home_controller.dart';
+import 'package:eshop/core/class/handlingdataview.dart';
+import 'package:eshop/data/model/itemsmodel.dart';
+import 'package:eshop/linkapi.dart';
+import 'package:eshop/view/widget/home/customappbar.dart';
+import 'package:eshop/view/widget/home/customcardhome.dart';
+import 'package:eshop/view/widget/home/customtitlehome.dart';
+import 'package:eshop/view/widget/home/listcategorieshome.dart';
+import 'package:eshop/view/widget/home/listitemhome.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_svg/svg.dart';
+
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     
-      body: Container(
-        child: ListView(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 10),
+    // ignore: unused_local_variable
+    Get.put(HomeControllerImp());
+    return  GetBuilder<HomeControllerImp>
+    (builder: (controller) =>  
+       Container(   
               padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                children: [
-                  Expanded(child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: "Find Product",
-                      hintStyle: TextStyle(fontSize: 18),
-                      border: OutlineInputBorder(
-                       borderSide: BorderSide.none,
-                       borderRadius: BorderRadius.circular(10)
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[200]
-                    ),
-                  )),
-                  SizedBox(width: 10),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    width: 60,
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: IconButton(onPressed: (){}, icon: Icon(Icons.notifications_active_outlined, size: 35,
-                    color: Colors.grey[600],)),)
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              child: Stack( children: [ Container(
-                alignment: Alignment.center,
-                child: ListTile(
-                  title: Text('A Delighted surprise flavors', style: TextStyle(color: Colors.white, fontSize: 20),),
-                  subtitle: Text('100% Chill & Cool!', style: TextStyle(color: Colors.white, fontSize: 30)),
-                ),
-                height: 150,   decoration: BoxDecoration(color: AppColor.secondColor, borderRadius:  BorderRadius.circular(20)),),
-                 Positioned(
-                  top:-20,
-                  right: -50,
-                  child: Container(height: 150, width: 150,decoration: BoxDecoration(
-                    color:AppColor.firstColor,
-                    borderRadius: BorderRadius.circular(160)
-                  ),),
-                )
-                
-                ])),
-               
+        child: ListView(
+          children:  [   
+           CustomAppBar(
+             mycontroller: controller.search!,
+            titleappbar: 'Find Product',  
+            onPressedSearch: (){
+              controller.onSearchItems();
+            },
+            onChanged: (val){
+               controller.checkSearch(val);
+            },
+            ),     
+            HandlingDataView(
+              statusRequest: controller.statusRequest, 
+              widget:!controller.isSearch ? 
+            Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            CustomCardHome(title: 'Delighted surprise flavors', body: 'A 100% Chill & Cool!'),
+            CustomTitleHome(title: 'Categories'),
+            ListCategoriesHome(),
+            CustomTitleHome(title: 'Chillers for you',),
+            ListItemHome(), 
+            CustomTitleHome(title: 'New Chillers',),  
+             ListItemHome(), 
+           ]):
+           ListItemsSearch(listdatamodel: controller.listdata) 
+           )
           ],
         )
-      ),
-      
+      )
+     ); 
+  }
+}
+
+class ListItemsSearch extends GetView<HomeControllerImp> {
+  final List<ItemsModel> listdatamodel;
+  const ListItemsSearch({super.key, required this.listdatamodel});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: listdatamodel.length,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index){
+        return  InkWell(
+          onTap: (){
+             controller.gotoPageProductDetails(listdatamodel[index]);
+          },
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: 20),
+            child: Card(child: Container(
+              padding: EdgeInsets.all(10),
+              child: Row(children: [
+                Expanded(
+                  child: CachedNetworkImage(
+                  imageUrl: "${AppLink.imagestItems}/${listdatamodel[index].itemsImage}")),
+                Expanded(
+                flex:2, 
+                child: ListTile(
+                  title: Text(listdatamodel[index].itemsName!),
+                  subtitle: Text(listdatamodel[index].categoriesName!),
+                ),
+              )
+              ]),
+              
+            ),),
+          ),
+        );
+      },
     );
   }
 }

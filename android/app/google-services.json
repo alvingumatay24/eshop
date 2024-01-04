@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159695171728",
+    "project_id": "ecommerce-edeee",
+    "storage_bucket": "ecommerce-edeee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159695171728:android:1cae901b6525bed050a815",
+        "android_client_info": {
+          "package_name": "com.example.eshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXdDJOGjuXehbGDb0uz11qbsbeYxK8GtU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables
 
 import 'package:eshop/controller/auth/login_controller.dart';
-import 'package:eshop/core/class/statusrequest.dart';
+import 'package:eshop/core/class/handlingdataview.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
 import 'package:eshop/core/functions/validinput.dart';
@@ -34,7 +34,8 @@ class _LoginState extends State<Login> {
       body: WillPopScope(
         onWillPop: alertExitApp,
         child: GetBuilder <LoginControllerImp>(builder: (controller) =>
-        controller.statusRequest == StatusRequest.loading ? Center( child: Text('Loading...'),):
+        HandlingDataRequest (statusRequest: controller.statusRequest, 
+        widget: 
         Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
           child: Form(
@@ -46,21 +47,23 @@ class _LoginState extends State<Login> {
                CustomBodyTextAuth(text: 'Sign In With Your Email...', ),
               const SizedBox(height: 18),
                  CustomTextFormAuth(
+                 isNumber: false,
                   valid: (val){
                     return validInput(val!, 5, 30, "email");
                   },
                   hintText: "Enter Your Email", 
                  iconData: Icons.mail_outline, 
                  labeltext: "Email", 
-                 mycontroller: controller.email, isNumber: true, 
+                 mycontroller: controller.email, 
                 //  mycontroller: null,
                  ),
                  GetBuilder<LoginControllerImp>(builder: (controller)=> CustomTextFormAuth(
+                  isNumber: false,
                     obscureText: controller.isshowpassword,
                     onTapIcon: (){
                        controller.showPassword();
                     },
-                    isNumber: false,
+                
                     valid: (val){
                       return validInput(val!, 5, 30, "password");
                     },
@@ -77,7 +80,8 @@ class _LoginState extends State<Login> {
                   child: Text('Forget Password', textAlign: TextAlign.end)),
                 CustomButtomAuth(text: 'SIGN-IN', onPressed: (){
                   controller.login();
-                },),
+                },
+                ),
                 SizedBox(height: 15),
                CustomTextSignUpOrSignIn(
                 textone: "You don't have account ? ", 
@@ -91,6 +95,7 @@ class _LoginState extends State<Login> {
         ),)
       )
       
+    )
     );
   }
 }

@@ -21,8 +21,11 @@ import '../../data/datasource/remote/auth/signup.dart';
           late TextEditingController  phone;
           late TextEditingController  password;
           bool isshowpassword = true;
-        StatusRequest? statusRequest;
-           SignupData signupData = SignupData(Get.find());
+
+        StatusRequest statusRequest = StatusRequest.none;
+
+        SignupData signupData = SignupData(Get.find());
+        
         List data = [];
     
     showPassword(){

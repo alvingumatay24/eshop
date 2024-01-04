@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
-import 'package:eshop/controller/auth/successresetpassword_controller.dart';
+import 'package:eshop/controller/forgetpassword/successresetpassword_controller.dart';
 import 'package:eshop/core/constant/color.dart';
 import 'package:eshop/core/functions/alertexitapp.dart';
 import 'package:eshop/view/widget/auth/custombottomauth.dart';

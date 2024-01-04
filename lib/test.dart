@@ -1,7 +1,8 @@
 
 // ignore_for_file: prefer_const_constructors, avoid_print
 
-import 'package:eshop/core/functions/checkinternet.dart';
+// import 'package:eshop/core/functions/checkinternet.dart';
+// import 'package:eshop/core/functions/checkinternet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
@@ -18,7 +19,7 @@ class _TestState extends State<Test> {
    // ignore: prefer_typing_uninitialized_variables
    var res;
    initialdata() async {
-    res = await checkInternet();
+  //  res = await checkInternet();
     print(res);
    }
 

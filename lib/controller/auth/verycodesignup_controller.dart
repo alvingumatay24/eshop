@@ -17,7 +17,7 @@ import 'package:get/get.dart';
          late String verifycode;
           String? email;
 
-         StatusRequest? statusRequest;
+           StatusRequest statusRequest = StatusRequest.none;
 
         @override
         checkcode() {
